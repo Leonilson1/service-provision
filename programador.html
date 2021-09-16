@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Prestação de Serviço</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body background="imagens\capa.jpg">  
+    
+                  
+        <h1 style="  
+     text-align: center;background:#247ce2">CADASTRAR</h1>
+     
+         
+     <header style="margin-top: 5px;">
+        <div class="container shadow p-3">
+            <nav class="navbar navbar-expand-lg navbar-ligth bg-ligth rounded-3">
+               <div class="container-fluid">
+	         <form id="cadastro" action="" method="GET">
+                                        
+                    <div class="row">
+						<div style="background:#f1f7f8;
+						width: 350px;
+						margin-left: 400px;
+						margin-right: auto;
+					   
+						border-radius: 10px;
+					
+						padding: 60px;">
+			<div>
+
+				<label for="id">ID:</label>
+			</div>
+			<div>
+				<div class="full-box">
+				<input type="number" id="id" name="id" placeholder=" Digite">
+
+				<div>
+					<div>
+
+					
+			     	<input type="submit" id="apagar" value="Apagar">
+                        <input type="submit" id="consultar" value="Consultar">
+
+						
+                        <input type="submit" id="alterar" value="Alterar">
+
+						
+					</div>
+
+				</div>
+		
+			</div>
+		      </div>
+              
+
+		 </form>	
+		</div>
+
+	</header>
+   
+           
+
+	<h2>RETORNO</h2>
+	<div id="resposta"> 
+		
+	</div>
+
+
+
+<script>
+    
+	$(document).ready(function() {
+
+		$('#cadastrar').click(function() {
+
+			var dados = $('#cadastro').serialize();
+
+			$.ajax({
+				method: 'GET',
+				url: 'cadastrobanco.php',
+				data: dados,
+
+				beforeSend: function() {
+					$("h2").html("Processo em andamento...");
+				}
+			})
+
+			.done(function(msg){
+				$("h2").html("Retorno da inclusão...");
+				$("#resposta").html(msg);
+
+			})
+
+			.fail(function(){
+
+				alert("Falha na inclusão");
+
+			})
+
+			return false;
+		});
+
+		$('#apagar').click(function() {
+
+			var dados = $('#cadastro').serialize();
+
+			$.ajax({
+				method: 'GET',
+				url: 'deletedados.php',
+				data: dados,
+
+				beforeSend: function() {
+					$("h2").html("Exclusão em andamento...");
+				}
+			})
+
+			.done(function(msg){
+				$("h2").html("Retorno da exclusão...");
+				$("#resposta").html(msg);
+
+			})
+
+			.fail(function(){
+
+				alert("Falha no cadastro");
+
+			})
+			return false;
+		});
+	
+        
+        	$('#consultar').click(function() {
+
+			var dados = $('#cadastro').serialize();
+
+			$.ajax({
+				method: 'GET',
+				url: 'buscabanco2.php',
+				data: dados,
+
+				beforeSend: function() {
+					$("h2").html("Consulta em andamento...");
+				}
+			})
+
+			.done(function(msg){
+				$("h2").html("Retorno da Consulta...");
+                             //  $("#resposta").html(msg);
+                           
+                             var cadastro = JSON.parse(msg);
+              
+                     
+                    
+                    var Bloco = '';
+					Bloco += "Celular: "    + cadastro[0].celular + "<br>";
+                    Bloco += "Nome: "  + cadastro[0].nome +"<br>";
+                    Bloco += "Email: "  + cadastro[0].email +  "<br>";
+                    Bloco += "CEP: " + cadastro[0].cep + "<br>";
+                    Bloco += "Endereço: " + cadastro[0].endereco + "<br>";
+					Bloco += "Bairro: " + cadastro[0].bairro + "<br>";
+					Bloco += "Cidade: " + cadastro[0].cidade + "<br>";
+                    Bloco += "<hr>";
+                     $("#resposta").append(Bloco);
+                               
+			})
+
+			.fail(function(){
+
+				alert("Falha na consulta");
+
+			})
+			return false;
+		});
+	});
+</script> 
+
+     
+     </div>
+
+</body>
+</html>

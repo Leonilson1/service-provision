@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Form de Registro com validações em JS</title>
+  <link rel="stylesheet" href="css/styles.css">
+  
+</head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+
+
+<body>
+  <div id="main-container">
+    <h1>Cadastre-se para acessar o sistema</h1>
+    <form id="register-form" action="">
+
+      
+      
+      <div class="full-box">
+          <label for="celular">Celular</label>
+          <input type="number" name="celular" id="celular" placeholder="Digite seu celular" >
+      </div>
+
+      <div class="full-box">
+          <label for="name">Nome</label>
+          <input type="text" name="name" id="name" placeholder="Digite seu nome" >
+      </div>
+
+      <div class="full-box">
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="email" placeholder="Digite seu e-mail" >
+      </div>
+
+      <div class="full-box">
+          <label for="cep">CEP</label>
+          <input type="number" name="cep" id="cep" placeholder="Digite seu cep" >
+      </div>
+    
+    <div class="half-box spacing">
+          <label for="endereco">Endereço</label>
+          <input type="text" name="endereco" id="endereco" placeholder="Digite seu endereço" >
+      </div>
+
+      <div class="hall-box ">
+          <label for="numero">Numero</label>
+          <input type="number" name="numero" id="numero" placeholder="Digite seu bairro">
+      </div>
+
+      <div class="full-box">
+        <label for="bairrro">Bairro</label>
+        <input type="text" name="bairro" id="bairro" placeholder="Digite seu bairro">
+      </div>
+
+      <div class="half-box spacing">
+        <label for="cidade">Cidade</label>
+        <input type="text" name="cidade" id="cidade" placeholder="Digite seu endereço" >
+    </div>
+
+    <div class="hall-box ">
+        <label for="estado">Estado</label>
+        <input type="text" name="estado" id="estado" placeholder="Digite seu bairro">
+    </div>
+
+
+      
+      <div>
+        <input type="checkbox" name="agreement" id="agreement">
+        <label for="agreement" id="agreement-label">Eu li e aceito os <a href="#">termos de uso</a></label>
+      </div>
+      <div class="full-box">
+        <input id="btn-submit" type="submit" value="Registrar">
+        
+      </div>
+   
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      
+      
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+      
+        
+             
+          
+           </div>
+
+
+
+    </form>
+  </div>
+  <div  style="  background-color: black ;
+          
+               position: relative;
+              top: 5px;
+             left: 1100px;
+              width: 500px;
+              border-radius: 10px;
+              max-width: 150px;">
+              
+    <li class="nav-item">
+
+        <a class="nav-link" href="./Pagina2.html"target="_self">DOCUMENTAÇÂO</a>
+        
+      </li>
+    <!-- JavaScript (Opcional) -->
+
+  </div>
+  <p class="error-validation template"></p>
+  <script src="js/scripts.js"></script>
+</body>
+</html>

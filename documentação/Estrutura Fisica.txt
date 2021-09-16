@@ -1,0 +1,64 @@
+
+
+
+create database projetotcc;
+
+use projetotcc;
+
+
+CREATE TABLE cadastro_usuario (
+  id_usuario int primary key auto_increment,
+  nome varchar(50) NOT NULL,
+  cep int(8) NOT NULL,
+  endereco varchar(50) NOT NULL,
+  bairro varchar(50) NOT NULL,
+  cidade varchar(50) NOT NULL
+  
+);
+
+CREATE TABLE cotatos(
+id_contato int primary key auto_increment,
+celular INT NOT NULL,
+email varchar (40),
+id_usuario INT,
+foreign key(id_usuario) references cadastro_ususario(id_usuario)
+);
+
+
+
+CREATE TABLE cadastro_profissional (
+id_cad_prof int primary key auto_increment,
+meu_servico varchar(50) NOT NULL,
+cidade varchar(30) NOT NULL,
+estado char(2) NOT NULL,
+bairro varchar(50) NOT NULL
+
+);
+
+
+CREATE TABLE pedidos_orcamento (
+id_pedido int primary key auto_increment,
+cliente int not null,
+profissional int not null,
+orcamento varchar(50) not null,
+descricao varchar(100) not null,
+id_usuario int,
+id_cad_prof INT,
+foreign key( id_usuario) references cadastro_usuario ( id_usuario ),
+foreign key(id_cad_prof) references cadastro_profissional (id_cad_prof)
+);
+
+CREATE TABLE avaliacao (
+id_avaliacao int primary key auto_increment,
+muito_bom varchar(20),
+bom varchar(20),
+rasoavel varchar(20),
+ruim varchar(20),
+muito_ruim varchar(20)
+);
+
+CREATE TABLE status (
+id_status int primary key auto_increment,
+cod_cliente int,
+cod_prof int
+);
