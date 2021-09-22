@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Prestação de Serviço</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	
+</head>
+  
+<body>
+	
+	<div id="main-container">
+		<h1>Cadastre-se para acessar o sistema</h1>
+
+              
+     <header style="margin-top: 5px;">
+        <div class="container shadow p-3">
+            <nav class="navbar navbar-expand-lg navbar-ligth bg-ligth rounded-3">
+               <div class="container-fluid">
+	         <form id="cadastro" action="" method="GET">
+
+                                        
+          
+				<div class="full-box">
+					<label for="celular">Celular</label>
+					<input type="number" name="celular" id="celular" placeholder="Digite seu celular" >
+				</div>
+           
+                             
+			         	<div class="full-box">
+							<label for="nome">Nome</label>
+							<input type="text" name="nome" id="nome" placeholder="Digite seu nome" >
+						</div>
+		        
+                
+
+		
+			<div class="full-box">
+				<label for="email">E-mail</label>
+				<input type="email" name="email" id="email" placeholder="Digite seu e-mail" >
+			</div>
+		
+	
+		
+			<div class="full-box">
+				<label for="cep">CEP</label>
+				<input type="number" name="cep" id="cep" placeholder="Digite seu cep" >
+			</div>
+		
+		       
+		    	
+			<div class="half-box spacing">
+			     <label for="endereco">Endereço</label>
+				 <input type="text" name="endereco" id="endereco" placeholder="Digite seu endereço" >
+			</div>
+		
+			<div class="hall-box ">
+				<label for="numero">Numero</label>
+				<input type="number" name="numero" id="numero" placeholder="Digite seu Numero">
+			</div>
+
+		  
+		  
+		    	<div class="full-box">
+					<label for="bairrro">Bairro</label>
+					<input type="text" name="bairro" id="bairro" placeholder="Digite seu Bairro">
+				</div>
+		
+				<div class="half-box spacing">
+					<label for="cidade">Cidade</label>
+					<input type="text" name="cidade" id="cidade" placeholder="Digite seu Cidade">
+				</div>
+		
+		
+				<div class="hall-box ">
+				<label for="estado">Estado</label>
+				<input type="text" name="estado" id="estado" placeholder="Digite seu Estado">
+			</div>
+	
+     	
+			<div>
+             <div>
+			<input type="checkbox" name="agreement" id="agreement">
+			<label for="agreement" id="agreement-label">Eu li e aceito os <a href="#">termos de uso</a></label>
+		  </div>
+		</div>
+
+		  <div class="full-box">
+			<input type="submit" id="cadastrar" value="CADASTRAR-SE">
+
+		  </div>
+
+		 </form>	
+		</div>
+
+	</header>
+   
+	
+           
+
+	<h2>R</h2>
+	<div id="resposta"> 
+		
+	</div>
+
+
+	<script>
+    
+		$(document).ready(function() {
+	  
+		  $('#cadastrar').click(function() {
+	  
+			var dados = $('#cadastro').serialize();
+	  
+			$.ajax({
+			  method: 'GET',
+			  url: 'cadastrobanco.php',
+			  data: dados,
+	  
+			  beforeSend: function() {
+				$("h2").html("Processo em andamento...");
+			  }
+			})
+	  
+			.done(function(msg){
+			  $("h2").html("...");
+			  $("#resposta").html(msg);
+	  
+			})
+	  
+			.fail(function(){
+	  
+			  alert("Falha na inclusão");
+	  
+			})
+	  
+			return false;
+		  });
+	  
+		  $('#apagar').click(function() {
+	  
+			var dados = $('#cadastro').serialize();
+	  
+			$.ajax({
+			  method: 'GET',
+			  url: 'deletedados.php',
+			  data: dados,
+	  
+			  beforeSend: function() {
+				$("h2").html("Exclusão em andamento...");
+			  }
+			})
+	  
+			.done(function(msg){
+			  $("h2").html("Retorno da exclusão...");
+			 // $("#resposta").html(msg);
+	  
+			})
+	  
+			.fail(function(){
+	  
+			  alert("Falha ");
+	  
+			})
+			return false;
+		  });
+		
+			  
+				$('#consultar').click(function() {
+	  
+			var dados = $('#cadastro').serialize();
+	  
+			$.ajax({
+			  method: 'GET',
+			  url: 'buscabanco2.php',
+			  data: dados,
+	  
+			  beforeSend: function() {
+				$("h2").html("Consulta em andamento...");
+			  }
+			})
+	  
+			.done(function(msg){
+			  $("h2").html("Retorno da Consulta...");
+								   //  $("#resposta").html(msg);
+								 
+								   var cadastro = JSON.parse(msg);
+					
+						   
+						  /*  document.getElementById('rg').value = cadastro[0].rg;
+							document.getElementById('nome').value = cadastro[0].nome;
+							document.getElementById('sexo').value = cadastro[0].sexo;
+							document.getElementById('idade').value = cadastro[0].idade;
+							document.getElementById('endereço').value = cadastro[0].endereco;
+							*/
+						  var Bloco = '';
+						  
+						  Bloco += "Nome: "  + cadastro[0].nome +"<br>";
+						 
+						  Bloco += "CEP: "      + cadastro[0].cep + "<br>";
+						  Bloco += "Endereço: " + cadastro[0].endereco + "<br>";
+						  Bloco += "Bairro: "   + cadastro[0].bairro + "<br>";
+						  Bloco += "Cidade: "   + cadastro[0].cidade + "<br>";
+						  Bloco += "Email: "    + cadastro[0].email +  "<br>";
+						  Bloco += "Celular: "  + cadastro[0].celular + "<br>";
+						  Bloco += "<hr>";
+						  
+						   $("#resposta").append(Bloco);
+									 
+			})
+S	  
+			.fail(function(){
+	  
+			  alert("Falha na consulta");
+	  
+			})
+			return false;
+		  });
+		});
+	  </script> 
+
+<div style="background:#9697c4">
+	<div style="margin-left: 50px ;">
+ <p style="font-size: 150%"></p>
+ </div>
+ </div>
+
+</body>
+</html>
